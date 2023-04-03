@@ -8,7 +8,8 @@ from todo_list.views import (
     TaskDeleteView,
     TagCreateView,
     TagUpdateView,
-    TagDeleteView, ChangeCompleteStatus, change_complete_status
+    TagDeleteView,
+    change_complete_status,
 )
 
 urlpatterns = [
