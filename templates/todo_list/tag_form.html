@@ -7,7 +7,7 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-    <input type="submit" value="Submit">
-    <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+    <input type="submit" value="Submit" class="btn btn-primary">
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-secondary">Cancel</a>
   </form>
 {% endblock %}
