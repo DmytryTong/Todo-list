@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+  <h1>
+    TODO list
+    <a href="{% url 'todo-list:tasks-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+  {% if task_list %}
+    {% for task in task_list %}
+      <strong>
+        {{ task.content }}
+        {% if task.complete is True %}
+        <p style="color: darkgreen">
+          Done
+        </p>
+        {% else %}
+        <p style="color: red">
+          Not done
+        </p>
+        {% endif %}
+      </strong>
+      <br>
+      <p>Created at: {{ task.creation_time }}</p>
+      <br>
+      {% if deadline %}
+        <p style="color: darkred">Deadline: {{ task.creation_time }}</p>
+      {% endif %}
+      <p>Tags:
+      {% for tag in tags %}
+        {{ tag.name }}
+      {% endfor %}
+      <a href="{% url 'todo_list:task-update' pk=task.id %}">
+        Update
+      </a>
+      <a href="{% url 'todo_list:task-delete' pk=task.id %}">
+        Delete
+      </a>
+      </p>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
