@@ -1,0 +1,55 @@
+{% extends "Base.html" %}
+
+{% block content %}
+  <h1>
+    TODO list
+    <a href="{% url 'todo_list:tasks-create' %}" class="btn btn-primary link-to-page">
+      Add task
+    </a>
+  </h1>
+  {% if task_list %}
+    {% for task in task_list %}
+      <strong>
+        {{ task.content }}
+        {% if task.complete is True %}
+        <p style="color: darkgreen">
+          Done
+        </p>
+        {% else %}
+        <p style="color: red">
+          Not done
+        </p>
+        {% endif %}
+      </strong>
+      {% if task.complete is True %}
+      <a href="{% url 'todo_list:change-complete-status' pk=task.id %}" class="btn btn-danger link-to-page">
+        Undo
+      </a>
+      {% else %}
+      <a href="{% url 'todo_list:change-complete-status' pk=task.id %}" class="btn btn-success link-to-page">
+        Complete
+      </a>
+      {% endif %}
+      <br>
+      <p>Created at: {{ task.creation_time }}</p>
+      <br>
+      {% if task.deadline %}
+        <p style="color: darkred">Deadline: {{ task.creation_time }}</p>
+      {% endif %}
+      <p>Tags:
+      {% for tag in task.tags.all %}
+        {{ tag.name }}
+      {% endfor %}
+      <a href="{% url 'todo_list:tasks-update' pk=task.id %}">
+        Update
+      </a>
+      <a href="{% url 'todo_list:tasks-delete' pk=task.id %}">
+        Delete
+      </a>
+      </p>
+      <hr/>
+    {% endfor %}
+    {% else %}
+      <p>There are no Tasks!</p>
+  {% endif %}
+{% endblock %}
