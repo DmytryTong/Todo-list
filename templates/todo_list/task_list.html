@@ -3,7 +3,7 @@
 {% block content %}
   <h1>
     TODO list
-    <a href="{% url 'todo_list:tasks-create' %}">
+    <a href="{% url 'todo_list:tasks-create' %}" class="btn btn-primary">
       Create
     </a>
   </h1>
@@ -24,11 +24,11 @@
       <br>
       <p>Created at: {{ task.creation_time }}</p>
       <br>
-      {% if deadline %}
+      {% if task.deadline %}
         <p style="color: darkred">Deadline: {{ task.creation_time }}</p>
       {% endif %}
       <p>Tags:
-      {% for tag in tags %}
+      {% for tag in task.tags.all %}
         {{ tag.name }}
       {% endfor %}
       <a href="{% url 'todo_list:tasks-update' pk=task.id %}">
