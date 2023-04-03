@@ -3,7 +3,7 @@
 {% block content %}
   <h1>
     TODO list
-    <a href="{% url 'todo_list:tasks-create' %}" class="btn btn-primary">
+    <a href="{% url 'todo_list:tasks-create' %}" class="btn btn-primary link-to-page">
       Create
     </a>
   </h1>
@@ -21,6 +21,15 @@
         </p>
         {% endif %}
       </strong>
+      {% if task.complete is True %}
+      <a href="{% url 'todo_list:change-complete-status' pk=task.id %}" class="btn btn-danger link-to-page">
+        Undo
+      </a>
+      {% else %}
+      <a href="{% url 'todo_list:change-complete-status' pk=task.id %}" class="btn btn-success link-to-page">
+        Complete
+      </a>
+      {% endif %}
       <br>
       <p>Created at: {{ task.creation_time }}</p>
       <br>
@@ -31,13 +40,16 @@
       {% for tag in task.tags.all %}
         {{ tag.name }}
       {% endfor %}
-      <a href="{% url 'todo_list:tasks-update' pk=task.id %}">
+      <a href="{% url 'todo_list:change-complete-status' pk=task.id %}">
         Update
       </a>
-      <a href="{% url 'todo_list:tasks-delete' pk=task.id %}">
+      <a href="{% url 'todo_list:change-complete-status' pk=task.id %}">
         Delete
       </a>
       </p>
+      <hr/>
     {% endfor %}
+    {% else %}
+      <p>There are no Tasks!</p>
   {% endif %}
 {% endblock %}
