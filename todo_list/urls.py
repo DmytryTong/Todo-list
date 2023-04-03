@@ -8,7 +8,7 @@ from todo_list.views import (
     TaskDeleteView,
     TagCreateView,
     TagUpdateView,
-    TagDeleteView
+    TagDeleteView, ChangeCompleteStatus, change_complete_status
 )
 
 urlpatterns = [
@@ -51,6 +51,11 @@ urlpatterns = [
         "tags/<int:pk>/delete/",
         TagDeleteView.as_view(),
         name="tags-delete",
+    ),
+    path(
+        "change_complete_status/<int:pk>/",
+        change_complete_status,
+        name="change-complete-status",
     ),
 ]
 
