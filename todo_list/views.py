@@ -1,6 +1,5 @@
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect
-from django.template.context_processors import request
+from django.http import HttpRequest
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -37,10 +36,12 @@ class TagCreateView(generic.CreateView):
     fields = "__all__"
     success_url = reverse_lazy("todo-list:tags-list")
 
+
 class TagUpdateView(generic.UpdateView):
     model = Tag
     fields = "__all__"
     success_url = reverse_lazy("todo-list:tags-list")
+
 
 class TagDeleteView(generic.DeleteView):
     model = Tag

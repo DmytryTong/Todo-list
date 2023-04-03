@@ -29,4 +29,8 @@ pyton 3.11 must be already installed
  date for task, optional "deadline" field for task`s dealine, "complete" field 
  as indicator of complition of a task "tags" field - which contains tags, 
  attached for this task, as Many-to-Many field. 
- 
+```
+# Demo:
+
+ ![Todo-list - home_page.png](screenshots%2FTodo-list%20-%20home_page.png)
+ ![Todo-list - tags_list.png](screenshots%2FTodo-list%20-%20tags_list.png)
